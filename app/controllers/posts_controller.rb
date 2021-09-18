@@ -3,8 +3,7 @@ class PostsController < ApplicationController
 
   def index
     posts = Post.all
-    # byebug
-    render json: posts.to_json(:include => :author, :comments)
+    render json: posts.to_json(:include => :author)
    end
 
   def show
@@ -37,7 +36,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :content)
+      params.require(:post).permit(:title, :comments,  :content)
     end
 
 end
